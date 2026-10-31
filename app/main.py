@@ -27,8 +27,7 @@ POLL_SECONDS = 300
 stop_event = threading.Event()
 
 
-RECONCILE_EVERY = 60  # minutes
-
+RECONCILE_EVERY = 60  # poll ticks; with POLL_SECONDS = 300 this is every 5 hours
 
 def poll_loop() -> None:
     tick = 0
