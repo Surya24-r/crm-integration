@@ -27,7 +27,7 @@ POLL_SECONDS = 300
 stop_event = threading.Event()
 
 
-RECONCILE_EVERY = 12  # minutes
+RECONCILE_EVERY = 60  # minutes
 
 
 def poll_loop() -> None:
