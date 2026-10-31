@@ -9,7 +9,8 @@ A backend integration that takes a **Closed Won deal in Pipedrive** (the CRM) an
 | URL | What it shows |
 |---|---|
 | `/` | Home page with links |
-| `/deals/18/view` | One deal: sync state, sales order, milestones, payments, metrics, jobs, retry form |
+| `/deals/2/view` | Full chain: sales order, milestone 1 invoice, payment, metrics, jobs, retry form |
+| `/deals/18/view` | Overdue invoice and voided invoice |
 | `/log` | Every Zoho and Pipedrive call, newest first. Filter by deal: `/log?deal=2` |
 | `/collections` | Per customer: outstanding, aging buckets, oldest unpaid invoice, deals |
 | `/health` | Health check |
@@ -153,10 +154,10 @@ Written by the integration only when the value changes. Invoice and payment reco
 
 ## API call counts
 
-Filled in after a clean run.
+Counted from the `integration_log` table for deal 2 (`system = 'zoho'`).
 
-- One deal, Closed Won to paid: `TBD` Zoho calls (from `/log?deal=2`, count `system = zoho` for that deal).
-- One unchanged sync: `TBD` Zoho calls (count the reconcile calls in a 5 minute window with no changes).
+- **One deal, Closed Won to paid:** deal 2 made **85 Zoho calls** and **58 Pipedrive calls** over its full lifecycle: customer and sales order creation, milestone 1 invoice, mark-as-sent, payment recording, reconcile passes and metrics write-back. This is an upper bound: it includes repeated test runs, retries and manual reconciles made during development. A single clean pass is lower.
+- **One unchanged sync:** **0 Zoho calls** when no invoice or payment has changed. The poller checks Pipedrive for changed deals, and skips any deal whose update time has not changed. The Zoho reconcile re-reads each invoice and its candidate payments, so it costs roughly one call per invoice plus one per matching payment whenever it runs (every 5 hours by default).
 
 ## Section 5 answers
 
@@ -183,10 +184,11 @@ Finance still sees every existing invoice, payment and sales order in Zoho, beca
 
 ## Reviewer guide
 
-- **Deployed link:** `<add your deployed URL>`
-- **Pipedrive and Zoho Books:** trial workspaces. Invite `<reviewer email>` or share login details in the submission form.
+- **Public repository:** this repo. It contains no secrets; `.env` is git-ignored.
+- **Deployed link:** `<add your deployed URL, or write "runs locally; see demo video">`
+- **Pipedrive and Zoho Books:** trial workspaces. Access is shared in the submission form, not in this file.
 - **Start with:** `/` → `/deals/2/view` (full chain) → `/log?deal=2` → `/collections`.
-- **Retry button:** needs the admin key, which is shared in the submission form. It is a test key.
+- **Retry button:** needs the admin key, shared in the submission form. It is a test key.
 - **Demo video:** `<add link>`.
 
 ## Repository layout
