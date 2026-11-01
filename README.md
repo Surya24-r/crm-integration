@@ -154,9 +154,9 @@ Written by the integration only when the value changes. Invoice and payment reco
 
 ## API call counts
 
-Counted from the `integration_log` table for deal 2 (`system = 'zoho'`).
+Counted from the `integration_log` table for deal 2 (`system = 'zoho'` and `system = 'crm'`).
 
-- **One deal, Closed Won to paid:** deal 2 made **85 Zoho calls** and **58 Pipedrive calls** over its full lifecycle: customer and sales order creation, milestone 1 invoice, mark-as-sent, payment recording, reconcile passes and metrics write-back. This is an upper bound: it includes repeated test runs, retries and manual reconciles made during development. A single clean pass is lower.
+- **One deal, Closed Won to paid:** deal 2 shows **101 Zoho calls** and **65 Pipedrive calls** in the log at the time of recording. This is an upper bound: it includes repeated test runs, retries, manual reconciles and the metrics write-backs made during development. A single clean pass is lower. The count keeps growing while the poller and reconcile run.
 - **One unchanged sync:** **0 Zoho calls** when no invoice or payment has changed. The poller checks Pipedrive for changed deals, and skips any deal whose update time has not changed. The Zoho reconcile re-reads each invoice and its candidate payments, so it costs roughly one call per invoice plus one per matching payment whenever it runs (every 5 hours by default).
 
 ## Section 5 answers
