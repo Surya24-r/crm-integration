@@ -185,7 +185,7 @@ Finance still sees every existing invoice, payment and sales order in Zoho, beca
 ## Reviewer guide
 
 - **Public repository:** this repo. It contains no secrets; `.env` is git-ignored.
-- **Deployed link:** https://crm-integration-czju.onrender.com (home page: `/`, deal page: `/deals/2/view`, log: `/log?deal=2`, collections: `/collections`).
+- **Deployed link:** `https://crm-integration-czju.onrender.com` (home page: `/`, deal page: `/deals/2/view`, log: `/log?deal=2`, collections: `/collections`).
 - **Pipedrive and Zoho Books:** trial workspaces. Access is shared in the submission form, not in this file.
 - **Start with:** `/` → `/deals/2/view` (full chain) → `/log?deal=2` → `/collections`.
 - **Retry button:** needs the admin key, shared in the submission form. It is a test key.
