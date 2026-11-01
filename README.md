@@ -189,7 +189,7 @@ Finance still sees every existing invoice, payment and sales order in Zoho, beca
 - **Pipedrive and Zoho Books:** trial workspaces. Access is shared in the submission form, not in this file.
 - **Start with:** `/` → `/deals/2/view` (full chain) → `/log?deal=2` → `/collections`.
 - **Retry button:** needs the admin key, shared in the submission form. It is a test key.
-- **Demo video:** `<add link>`.
+- **Demo video:** `https://drive.google.com/file/d/1E-ryKrSWht-qWSAM0ciqYtxSPhq0jRKl/view?usp=drivesdk`.
 
 ## Repository layout
 
